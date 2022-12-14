@@ -1,7 +1,17 @@
 <div>
-  <h3><%= current_user.name %></h3>
+  <h2>User info</h2>
   <%= image_tag current_user.get_profile_image(100,100) %>
-  <p><%= current_user.introduction %></p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <td><%= current_user.name %></td>
+    </tr>
+    <tr>
+      <th>Introduction</th>
+      <td><%= current_user.introduction %></td>
+    </tr>
+  </table>
+
   <p><%= link_to "User Edit", edit_user_path(current_user.id) %></p>
 </div>
 
