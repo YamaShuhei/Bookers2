@@ -5,8 +5,10 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
+      successfully_message
       redirect_to books_path
     else
+      error_message
       @books = Book.all
       render :index
     end
@@ -33,8 +35,13 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
+    if @book.update(book_params)
+    successfully_message
     redirect_to book_path
+    else
+    error_message
+    render :edit
+    end
   end
 
 
@@ -45,7 +52,8 @@ class BooksController < ApplicationController
   end
 
   def is_matching_login_user
-    user_id = params[:id].to_i
+    @user = Book.find(params[:id])
+    user_id = @user.user_id
     login_user_id = current_user.id
     if(user_id != login_user_id)
       redirect_to books_path

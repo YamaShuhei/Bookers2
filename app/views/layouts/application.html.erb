@@ -34,7 +34,12 @@
       </li>
     <% end %>
     </header>
-
+  <div class = "flash-message">
+    <%= flash[:login] %>
+    <%= flash[:logout] %>
+    <%= flash[:success] %>
+    <%= flash[:error] %>
+  </div>
 
     <%= yield %>
   </body>

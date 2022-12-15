@@ -1,3 +1,14 @@
+<div class = "error message">
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
 <h2>Book Info</h2>
 <%= form_with model: @book do |f| %>
 <label for="inputTitle">Title</label>
