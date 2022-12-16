@@ -10,47 +10,50 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class = "d-flex flex-column vh-100">
-    <header class = "shadow-sm, bg-dark">
+  <body>
+    <header class = "p-3 mb-5 shadow-sm bg-dark">
+      <nav class = "navbar">
       <%= link_to top_path do %>
-      <i class="far fa-book-open">Bookers</i>
+      <div class = "bg-light p-2 pl-5 pr-5 border rounded-lg">
+        <i class="fa-solid fa-pen-nib fa-2x text-dark"></i><span class="text-dark h2">Bookers</span>
+      </div>
       <% end %>
 
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "My page", user_path(current_user.id) %>
-      </li>
-      <li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-        <%= link_to "Users", users_path %>
-      </li>
-      <li>
-        <%= link_to "Books", books_path %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "Home", top_path %>
-      </li>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
-    <% end %>
+      <div class="dropdown mr-5">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu
+        </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% if user_signed_in? %>
+        <%= link_to user_path(current_user.id), class: 'dropdown-item' do %>
+        <i class="fa-solid fa-user"></i><span> My page</span>
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item'  do %>
+        <i class="fa-solid fa-right-from-bracket"></i><span> Log out</span>
+        <% end %>
+        <%= link_to users_path, class: 'dropdown-item'  do %>
+        <i class="fa-solid fa-users"></i><span> Users</span>
+        <% end %>
+        <%= link_to books_path, class: 'dropdown-item' do %>
+        <i class="fa-solid fa-book-open"></i><span> Books</span>
+        <% end %>
+      <% else %>
+        <%= link_to "Home", top_path, class: 'dropdown-item' %>
+        <%= link_to "About", about_path, class: 'dropdown-item' %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'dropdown-item' %>
+        <%= link_to "Log in", new_user_session_path, class: 'dropdown-item' %>
+      <% end %>
+      </div>
+    </div>
+    </nav>
+
     </header>
-  <div class = "flash-message">
-    <%= flash[:login] %>
-    <%= flash[:logout] %>
+    <main>
     <%= flash[:success] %>
     <%= flash[:error] %>
-  </div>
-
+    <div class ="container">
     <%= yield %>
+    </div>
+    </main>
   </body>
 </html>

@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     redirect_to user_path
     else
     error_message
-    @user = User.find(params[:id])
     render :edit
     end
   end

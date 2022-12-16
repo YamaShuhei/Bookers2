@@ -1,9 +1,8 @@
-<h1>Welocom to Bookers!!</h1>
-<p>あなたのお気に入りの本を登録しましょう！</p>
-
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
+<div class= "column text-center">
+  <h1>Welocom to Bookers!!</h1>
+  <p>あなたのお気に入りの本を登録しましょう！</p>
+  <ul class = "col-md-7 mx-auto">
+    <li><%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary btn-lg btn-block mb-5' %></li>
+    <li></li><%= link_to "Log in", new_user_session_path, class: 'btn btn-secondary btn-lg btn-block' %></li>
+  </ul>
+</div>
