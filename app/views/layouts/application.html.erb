@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,8 +10,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
+  <body class = "d-flex flex-column vh-100">
+    <header class = "shadow-sm, bg-dark">
+      <%= link_to top_path do %>
+      <i class="far fa-book-open">Bookers</i>
+      <% end %>
+
     <% if user_signed_in? %>
       <li>
         <%= link_to "My page", user_path(current_user.id) %>
@@ -26,6 +30,12 @@
         <%= link_to "Books", books_path %>
       </li>
     <% else %>
+      <li>
+        <%= link_to "Home", top_path %>
+      </li>
+      <li>
+        <%= link_to "About", about_path %>
+      </li>
       <li>
         <%= link_to "Sign up", new_user_registration_path %>
       </li>
