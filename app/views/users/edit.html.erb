@@ -1,22 +1,25 @@
-<h2>User info</h2>
-<div class = "error message">
-<% if @user.errors.any? %>
-  Error occurred in<%= @user.errors.count %>case.
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class = "error message">
+    <% if @user.errors.any? %>
+      Error occurred in<%= @user.errors.count %>case.
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+    </div>
+    <h2>User edit</h2>
+    <%= form_with model: @user do |f| %>
+      <label for="inputName">Name</label>
+      <p><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name" %></p>
+      <label for="inputImage">ProfileImage</label>
+      <p><%= f.file_field :profile_image, placeholder: "Profile Image", accept: "image/*" %></p>
+      <label for="inputIntroduction">Introduction</label>
+      <p><%= f.text_area :introduction, id:"inputIntroduction",maxlength: "50", placeholder: "Introduction",size: "50x5" %></p>
+      <%= f.submit "Update User", class: 'btn btn-success' %>
+      <%= link_to "Back", user_path, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
 </div>
-<%= form_with model: @user do |f| %>
-<label for="inputName">Name</label>
-<%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name" %>
-<label for="inputImage">ProfileImage</label>
-<%= f.file_field :profile_image, placeholder: "Profile Image", accept: "image/*" %>
-<label for="inputIntroduction">Introduction</label>
-<%= f.text_area :introduction, id:"inputIntroduction", placeholder:"Introduction" %>
-
-<%= f.submit "Update User" %>
-
-<% end %>

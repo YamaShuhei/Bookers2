@@ -1,11 +1,28 @@
-<%= render 'books/sidebar', books: @books %>
+<div class="row">
+  <%= render 'books/sidebar', books: @books %>
+  <div class="col-md-8">
+  <table class ="table table-hover">
+    <thread>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Name</th>
+        <th scope="col">Introduction</th>
+      </tr>
+    </thread>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image(100,100) %></td>
+        <td>
+          <%= link_to user_path(user.id) do %>
+          <p><%= user.name %></p>
+          <% end %>
+        </td>
+        <td><%= user.introduction %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% @users.each do |user| %>
-
-  <p>投稿ユーザー画像：<%= image_tag user.get_profile_image(100,100) %></p>
-  <%= link_to user_path(user.id) do %>
-  <p>Name：<%= user.name %></p>
-  <% end %>
-  <p>introduction：<%= user.introduction %></p>
-
-<% end %>
+  </div>
+</div>
