@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     user_id = params[:id].to_i
     login_user_id = current_user.id
     if(user_id != login_user_id)
-      redirect_to users_path
+      redirect_to user_path(current_user)
     end
   end
 
