@@ -1,11 +1,32 @@
-<div>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.body %></p>
-  <p>User image：<%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <p>User name：<%= link_to @book.user.name, user_path(@book.user_id) %></p>
-  <p>Uploaded：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
-    <% if @book.user == current_user %>
-    <%= link_to "Edit Book", edit_book_path %>
-    <%= link_to "delete", book_path(@book), method: :delete %>
-    <% end %>
+<div class ="row">
+  <%= render 'books/sidebar', books: @books %>
+  <div class ="col-md-8">
+    <p class ="h2">Book detail</p>
+    <table class ="table">
+      <thread>
+        <th scope="col">User</th>
+        <th scope="col">Title</th>
+        <th scope="col">Opinion</th>
+        <th scope="col">Uploaded</th>
+        <th></th>
+        <th></th>
+      </thread>
+      <tbody>
+        <td>
+          <%= link_to user_path(@book.user_id) do %>
+          <%= image_tag @book.user.get_profile_image(100,100) %><br>
+          <%= @book.user.name %>
+          <% end %>
+        </td>
+        <td><%= @book.title %></td>
+        <td><%= @book.body %></td>
+        <td><%= @book.created_at.strftime('%Y/%m/%d') %></td>
+        <% if @book.user == current_user %>
+        <td><%= link_to "Edit", edit_book_path, class: 'btn btn-success btn-lg' %></td>
+        <td><%= link_to "Delete", book_path(@book), method: :delete, "data-confirm" => "Can I delete it?", class: 'btn btn-danger btn-lg' %></td>
+        <% end %>
+        </td>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   private
 
   def success
-    flash[:success] = "Successfully operated."
+  flash[:success] = "Successfully operated."
   end
 
   def error

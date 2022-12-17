@@ -26,16 +26,16 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <% if user_signed_in? %>
         <%= link_to user_path(current_user.id), class: 'dropdown-item' do %>
-        <i class="fa-solid fa-user"></i><span> My page</span>
-        <% end %>
-        <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item'  do %>
-        <i class="fa-solid fa-right-from-bracket"></i><span> Log out</span>
+          <i class="fa-solid fa-user"></i><span> My page</span>
         <% end %>
         <%= link_to users_path, class: 'dropdown-item'  do %>
-        <i class="fa-solid fa-users"></i><span> Users</span>
+          <i class="fa-solid fa-users"></i><span> Users</span>
         <% end %>
         <%= link_to books_path, class: 'dropdown-item' do %>
-        <i class="fa-solid fa-book-open"></i><span> Books</span>
+          <i class="fa-solid fa-book-open"></i><span> Books</span>
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item'  do %>
+          <i class="fa-solid fa-right-from-bracket"></i><span> Log out</span>
         <% end %>
       <% else %>
         <%= link_to "Home", top_path, class: 'dropdown-item' %>
@@ -44,14 +44,15 @@
         <%= link_to "Log in", new_user_session_path, class: 'dropdown-item' %>
       <% end %>
       </div>
-    </div>
-    </nav>
+      </div>
+      </nav>
 
     </header>
     <main>
-    <%= flash[:success] %>
-    <%= flash[:error] %>
     <div class ="container">
+    <% flash.each do |key, value| %>
+      <p class= "alert alert-<%= key %>"><%= value %></p>
+    <% end %>
     <%= yield %>
     </div>
     </main>
