@@ -1,8 +1,40 @@
 <div class ="row">
-  <%= render 'books/sidebar', books: @books %>
+  <div class="bg-light col-md-4 border rounded-lg pb-4 h-50">
+    <div class ="p-2">
+      <h2 class>User info</h2>
+      <%= image_tag @book.user.get_profile_image(100,100) %>
+      <table class="table table-bordered mt-2 bg-white ">
+        <thread>
+        <tr>
+          <th>Name</th>
+          <td><%= @book.user.name %></td>
+        </tr>
+        </thread>
+        <tbody>
+        <tr>
+          <th>Introduction</th>
+          <td><%= @book.user.introduction %></td>
+        </tr>
+        </tbody>
+      </table>
+        <%= link_to edit_user_path(@book.id), class: 'btn btn-secondary btn-block' do %>
+        <i class="fa-solid fa-user-pen"></i><span>User edit</span>
+        <% end %>
+    </div>
+
+    <h2>New book</h2>
+    <%= form_with model: Book.new, url: books_path, scope: :book do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title, placeholder: "title" %>
+      <h4>Opinion</h4>
+      <%= f.text_area :body, placeholder: "Opinion", style: "width:100%" %><br>
+      <div class="text-right mt-3"><%= f.submit 'Create Book', class: 'btn btn-primary' %></div>
+  </div>
+
   <div class ="col-md-8">
     <p class ="h2">Book detail</p>
     <table class ="table">
+      <tr></tr>
       <thread>
         <th scope="col">User</th>
         <th scope="col">Title</th>
@@ -11,11 +43,12 @@
         <th></th>
         <th></th>
       </thread>
+      </tr>
       <tbody>
         <td>
           <%= link_to user_path(@book.user_id) do %>
-          <%= image_tag @book.user.get_profile_image(100,100) %><br>
-          <%= @book.user.name %>
+            <%= image_tag @book.user.get_profile_image(100,100) %><br>
+            <%= @book.user.name %>
           <% end %>
         </td>
         <td><%= @book.title %></td>
@@ -23,9 +56,8 @@
         <td><%= @book.created_at.strftime('%Y/%m/%d') %></td>
         <% if @book.user == current_user %>
         <td><%= link_to "Edit", edit_book_path, class: 'btn btn-success btn-lg' %></td>
-        <td><%= link_to "Delete", book_path(@book), method: :delete, "data-confirm" => "Can I delete it?", class: 'btn btn-danger btn-lg' %></td>
+        <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "Can I delete it?", class: 'btn btn-danger btn-lg' %></td>
         <% end %>
-        </td>
       </tbody>
     </table>
   </div>

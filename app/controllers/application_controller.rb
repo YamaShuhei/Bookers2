@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     success
-    books_path
+    user_path(@user.id)
   end
 
   def after_sign_out_path_for(resource)
     success
-    top_path
+    root_path
   end
 
   def successfully_message
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   private
 
   def success
-  flash[:success] = "Successfully operated."
+  flash[:success] = "successfully"
   end
 
   def error

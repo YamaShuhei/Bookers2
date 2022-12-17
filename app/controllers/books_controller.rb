@@ -1,12 +1,12 @@
 class BooksController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
       successfully_message
-      redirect_to books_path
+      redirect_to book_path(@book.id)
     else
       error_message
       @books = Book.all

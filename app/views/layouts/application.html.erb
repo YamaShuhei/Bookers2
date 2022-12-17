@@ -13,37 +13,40 @@
   <body>
     <header class = "p-3 mb-5 shadow-sm bg-warning">
       <nav class = "navbar">
-      <%= link_to top_path do %>
+      <%= link_to root_path do %>
       <div class = "bg-light p-2 pl-5 pr-5 border rounded-lg">
         <i class="fa-solid fa-pen-nib fa-2x text-dark"></i><span class="text-dark h2">Bookers</span>
       </div>
       <% end %>
 
-      <div class="dropdown mr-5">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Menu
-        </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="p-3 mr-3 bg-light rounded">
       <% if user_signed_in? %>
-        <%= link_to user_path(current_user.id), class: 'dropdown-item' do %>
-          <i class="fa-solid fa-user"></i><span> My page</span>
+        <%= link_to user_path(current_user.id) do %>
+          <i class="fa-solid fa-user"></i><span> Home</span>
         <% end %>
-        <%= link_to users_path, class: 'dropdown-item'  do %>
-          <i class="fa-solid fa-users"></i><span> Users</span>
+        <%= link_to users_path  do %>
+          <i class="fa-solid fa-users ml-2"></i><span> Users</span>
         <% end %>
-        <%= link_to books_path, class: 'dropdown-item' do %>
-          <i class="fa-solid fa-book-open"></i><span> Books</span>
+        <%= link_to books_path do %>
+          <i class="fa-solid fa-book-open ml-2"></i><span> Books</span>
         <% end %>
-        <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item'  do %>
-          <i class="fa-solid fa-right-from-bracket"></i><span> Log out</span>
+        <%= link_to destroy_user_session_path, method: :delete  do %>
+          <i class="fa-solid fa-right-from-bracket ml-2"></i><span> Log out</span>
         <% end %>
       <% else %>
-        <%= link_to "Home", top_path, class: 'dropdown-item' %>
-        <%= link_to "About", about_path, class: 'dropdown-item' %>
-        <%= link_to "Sign up", new_user_registration_path, class: 'dropdown-item' %>
-        <%= link_to "Log in", new_user_session_path, class: 'dropdown-item' %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house"></i><span>Home</span>
+        <% end %>
+        <%= link_to about_path do %>
+          <i class="fa-solid fa-question ml-3"></i><span>About</span>
+        <% end %>
+        <%= link_to new_user_registration_path do %>
+        <i class="fa-solid fa-user-plus ml-3"></i><span>Sign up</span>
+        <% end %>
+        <%= link_to new_user_session_path do %>
+        <i class="fa-solid fa-right-to-bracket ml-3"></i><span>Log in</span>
+        <% end %>
       <% end %>
-      </div>
       </div>
       </nav>
 

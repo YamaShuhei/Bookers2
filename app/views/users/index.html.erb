@@ -7,18 +7,20 @@
         <th scope="col">User</th>
         <th scope="col">Name</th>
         <th scope="col">Introduction</th>
+        <th></th>
       </tr>
     </thread>
     <tbody>
       <% @users.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image(100,100) %></td>
+        <td><p><%= user.name %></p></td>
+        <td><%= user.introduction %></td>
         <td>
           <%= link_to user_path(user.id) do %>
-          <p><%= user.name %></p>
+          <p>Show</p>
           <% end %>
         </td>
-        <td><%= user.introduction %></td>
       </tr>
       <% end %>
     </tbody>
