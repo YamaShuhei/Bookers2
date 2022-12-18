@@ -14,50 +14,51 @@
     <header class = "p-3 mb-5 shadow-sm bg-warning">
       <nav class = "navbar">
       <%= link_to root_path do %>
-      <div class = "bg-light p-2 pl-5 pr-5 border rounded-lg">
-        <i class="fa-solid fa-pen-nib fa-2x text-dark"></i><span class="text-dark h2">Bookers</span>
-      </div>
+        <div class = "bg-light p-2 pl-5 pr-5 border rounded-lg">
+          <i class="fa-solid fa-pen-nib fa-2x text-dark"></i><span class="text-dark h2">Bookers</span>
+        </div>
       <% end %>
 
       <div class="p-3 mr-3 bg-light rounded">
-      <% if user_signed_in? %>
-        <%= link_to user_path(current_user.id) do %>
-          <i class="fa-solid fa-user"></i><span> Home</span>
+        <% if user_signed_in? %>
+          <%= link_to user_path(current_user.id) do %>
+            <i class="fas fa-home"></i><span> Home</span>
+          <% end %>
+          <%= link_to users_path  do %>
+            <i class="fas fa-users ml-2"></i><span> Users</span>
+          <% end %>
+          <%= link_to books_path do %>
+            <i class="fas fa-book-open ml-2"></i><span> Books</span>
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete  do %>
+            <i class="fas fa-sign-out-alt ml-2"></i><span> Log out</span>
+          <% end %>
+        <% else %>
+          <%= link_to root_path do %>
+            <i class="fas fa-home"></i><span>Home</span>
+          <% end %>
+          <%= link_to about_path do %>
+            <i class="fas fa-link ml-3"></i><span>About</span>
+          <% end %>
+          <%= link_to new_user_registration_path do %>
+          <i class="fas fa-user-plus ml-3"></i><span>Sign up</span>
+          <% end %>
+          <%= link_to new_user_session_path do %>
+          <i class="fas fa-sign-in-alt ml-3"></i><span>Log in</span>
+          <% end %>
         <% end %>
-        <%= link_to users_path  do %>
-          <i class="fa-solid fa-users ml-2"></i><span> Users</span>
-        <% end %>
-        <%= link_to books_path do %>
-          <i class="fa-solid fa-book-open ml-2"></i><span> Books</span>
-        <% end %>
-        <%= link_to destroy_user_session_path, method: :delete  do %>
-          <i class="fa-solid fa-right-from-bracket ml-2"></i><span> Log out</span>
-        <% end %>
-      <% else %>
-        <%= link_to root_path do %>
-          <i class="fa-solid fa-house"></i><span>Home</span>
-        <% end %>
-        <%= link_to about_path do %>
-          <i class="fa-solid fa-question ml-3"></i><span>About</span>
-        <% end %>
-        <%= link_to new_user_registration_path do %>
-        <i class="fa-solid fa-user-plus ml-3"></i><span>Sign up</span>
-        <% end %>
-        <%= link_to new_user_session_path do %>
-        <i class="fa-solid fa-right-to-bracket ml-3"></i><span>Log in</span>
-        <% end %>
-      <% end %>
       </div>
       </nav>
-
     </header>
+
     <main>
-    <div class ="container">
-    <% flash.each do |key, value| %>
-      <p class= "alert alert-<%= key %>"><%= value %></p>
-    <% end %>
-    <%= yield %>
-    </div>
+      <div class ="container">
+        <% flash.each do |key, value| %>
+        <p class= "alert alert-<%= key %>"><%= value %></p>
+        <% end %>
+        <%= yield %>
+      </div>
     </main>
+
   </body>
 </html>

@@ -4,24 +4,24 @@
     <%= image_tag current_user.get_profile_image(100,100) %>
     <table class="table table-bordered mt-2 bg-white ">
       <thread>
-      <tr>
-        <th>Name</th>
-        <td><%= current_user.name %></td>
-      </tr>
+        <tr>
+          <th>Name</th>
+          <td><%= current_user.name %></td>
+        </tr>
       </thread>
-      <thread>
-      <tr>
-        <th>Introduction</th>
-        <td><%= current_user.introduction %></td>
-      </tr>
-      </thread>
+      <tbody>
+        <tr>
+          <th>Introduction</th>
+          <td><%= current_user.introduction %></td>
+        </tr>
+      </tbody>
     </table>
   <%= link_to edit_user_path(current_user.id), class: 'btn btn-secondary btn-block' do %>
-  <i class="fa-solid fa-user-pen"></i><span>User edit</span>
+  <i class="fas fa-user-cog"></i><span>User edit</span>
   <% end %>
   </div>
 
-    <h2>New book</h2>
+  <h2>New book</h2>
   <%= form_with model: Book.new, url: books_path, scope: :book do |f| %>
     <h4>Title</h4>
       <%= f.text_field :title, placeholder: "title" %>
